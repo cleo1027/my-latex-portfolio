@@ -1,2 +1,2 @@
 # my-latex-portfolio
-some of math documents ive created
+Welcome! Here is a collection of the math documents compiled uaing Overleaf and hosted on GitHub.
