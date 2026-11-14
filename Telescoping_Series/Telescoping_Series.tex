@@ -1,0 +1,82 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\usepackage{graphicx} % Required for inserting images
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx,float}
+\usepackage[T1]{fontenc}
+\usepackage[thinc]{esdiff}
+
+%Customization
+\usepackage[letterpaper,top=0.2in,bottom=1in,left=0.8in,right=0.8in,heightrounded]{geometry}
+
+%Line height
+\renewcommand{\baselinestretch}{1.15}
+
+%Parskip and Parindent
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.7em}
+
+\title{\textbf{Telescoping Series—Convergence Proof} \\[-0.75em]}
+\author{Random Series}
+\date{}
+
+\begin{document}
+
+\maketitle
+\vspace{-3ex}
+
+\thispagestyle{empty}
+
+\maketitle
+\vspace{-0.7ex}
+
+\textbf{Definition:} A series is known to be telescopic if some of the first few terms and final terms of a partial sum are left after the cancellation of most of the terms in the middle.
+
+{Formally we let $S_n$ be defined as $\sum\limits_{n=1}^{\infty} a_n=a_1+a_2+a_3+\dots+a_n$ such that all terms are positive and permissible, $\forall n \in \mathbb{N}$.}
+
+{We want to show that the telescoping series converges. Consequently, we want to prove that when $n$ approaches $+ \infty$, $S_n=\sum\limits_{n=1}^{\infty}$ gives a constant, say $S \in \mathbb{R}$. Hence, we are interested in $\lim\limits_{n \to +\infty} S_n=S$.}
+
+\vspace{0.5cm} % Adjust the space above the line
+\hrule % Or use \rule{\textwidth}{0.4pt}
+\vspace{0.5cm} % Adjust the space below the line
+
+\textbf{Proof.}
+
+{Strategically, we let $S_n=a_n-a_{n+1}$. It follows that}
+$$\lim_{n \to +\infty} S_n=\lim_{n \to +\infty} [a_n - a_{n+1}]=\sum_{n=1}^{\infty} [a_n-a_{n+1}]$$
+
+{By the distributive and linear property of summation, it becomes}
+
+$$\sum_{n=1}^{\infty} [a_n-a_{n+1}]=\sum_{n=1}^{\infty} a_n - \sum_{n=1}^{\infty} a_{n+1}$$
+
+{Express in partial sums}
+$$\sum_{n=1}^{\infty} a_n=a_1+a_2+a_3 + \dots+a_n$$
+
+$$-\sum_{n=1}^{\infty} a_{n+1} =-(a_2+a_3+a_4+\dots +a_{n+1})$$
+
+By combining the two partial sums, we get:
+\begin{align*}
+    S_n &= (a_1 + a_2 + a_3 + \dots + a_n) - (a_2 + a_3 + a_4 + \dots + a_{n+1}) \\
+    S_n &= a_1 - a_{n+1}
+\end{align*}
+
+{Taking the limit of the resulting expression}
+\begin{align*}
+    \lim_{n \to +\infty} S_n &= \lim_{n \to +\infty} [a_1 - a_{n+1}] \\
+    &= \lim_{n \to +\infty} a_1 - \lim_{n \to +\infty} a_{n+1} \\
+    &= a_1 - \lim_{n \to +\infty} a_{n+1}
+\end{align*}
+
+{If $\lim_{n \to +\infty} a_{n+1}$ exists, then $\lim\limits_{n \to +\infty} S_n$ also exists because $\lim\limits_{n \to +\infty} a_1=a_1$. Therefore, the telescoping series $S_n$ converges. \hfill $\square$}
+
+\vspace{0.8cm} % Adjust the space above the line
+\hrule % Or use \rule{\textwidth}{0.4pt}
+\vspace{0.2cm} % Adjust the space below the line
+
+
+
+
+\end{document}
+
