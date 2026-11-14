@@ -1,0 +1,53 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{graphicx} % Required for inserting images
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx,float}
+\usepackage[T1]{fontenc}
+\usepackage[thinc]{esdiff}
+\usepackage{enumitem}
+
+%Customization
+\usepackage[letterpaper,top=0.2in,bottom=1in,left=0.8in,right=0.8in,heightrounded]{geometry}
+
+%Line height
+\renewcommand{\baselinestretch}{1.15}
+
+%Parskip and Parindent
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.7em}
+
+\title{\textbf{Double Nested Operator Puzzle} \\[-0.6em]}
+\author{Submission for Robols Math}
+\date{}
+
+
+\begin{document}
+\maketitle
+\vspace{-2em}
+
+Solve for the expression:
+
+\[ \prod_{k=67}^{6767} \frac{\pi}{2} \sum_{n=0}^{\infty} \frac{\frac {k}{2n+1}(-1)^n (\frac{k\pi}{2})^{2n} }{(2n)!} \]
+
+\textbf{Solution:}
+
+{Reorder the terms:}
+\[ \prod_{k=67}^{6767} \sum_{n=0}^{\infty} \frac{\frac {1}{2n+1} \frac{k\pi}{2} (-1)^n (\frac{k\pi}{2})^{2n} }{(2n)!} \]
+\[ \prod_{k=67}^{6767} \sum_{n=0}^{\infty} \frac{(-1)^n (\frac{k\pi}{2})^{2n+1} }{(2n+1)(2n)!} \]
+\[ \prod_{k=67}^{6767} \sum_{n=0}^{\infty} \frac{(-1)^n (\frac{k\pi}{2})^{2n+1} }{(2n+1)!} \]
+
+{Notice that the expression simplifies to the Taylor expansion of $\sin{\frac{k\pi}{2}}$. Then,}
+\[ \prod_{k=67}^{6767} \sin{\frac{k\pi}{2}} \]
+{Evaluate the expression}
+\[\sin{\frac{(67)\pi}{2}} \cdot \sin{\frac{(68)\pi}{2}} \cdot \sin{\frac{(69)\pi}{2}} \cdot \cdots \cdot \sin{\frac{(6767)\pi}{2}}\]
+{Since $\sin{\frac{68\pi}{2}}=\sin{34\pi}=0$, then the whole expression is equal to 0}.
+
+
+
+
+
+
+
+\end{document}

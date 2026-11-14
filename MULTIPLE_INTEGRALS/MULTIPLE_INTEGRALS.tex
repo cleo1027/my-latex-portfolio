@@ -1,0 +1,82 @@
+\documentclass{article}
+
+\setlength{\headheight}{15pt}
+\usepackage{graphicx}			
+\usepackage{amsmath}			
+\usepackage[margin=1in, headheight=7pt, headsep=12pt]{geometry}
+\usepackage{fancyhdr}			
+\usepackage{enumerate}          
+\usepackage[shortlabels]{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\textbf{MATH 38 Mathematical Analysis III}\\\textbf{Mock Exercise on Multiple Integrals}}
+\fancyhead[R]{\textbf{1st Semester AY 2026-2027}\\\textbf{17 October 2026}}
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrule}{
+  \vskip 6pt 
+  \hrule width \headwidth height 0.7pt
+  \vskip -6pt 
+}
+
+\setlength{\headheight}{28pt}
+\setlength{\headsep}{14pt}
+
+\begin{document}
+
+\noindent \textbf{General Directions:} Do as indicated. Write your complete solution.
+\begin{enumerate}[1.]
+    \item{Consider the region $A$ bounded by the graphs $y^2=x$ and $y=x-2$.}
+    \vspace{-0.5em}
+        \begin{enumerate}[a.]
+            \item{Set-up an integral in the order $dxdy$ that gives the area of $A$.} \hfill (2 points)
+            \item{Write the integral in sub-item a with the order of its integration reversed.} \hfill (1 point)
+            \item{Set-up an integral that gives the volume of the solid when $A$ is projected upwards the graph of $z=25-x^2-y^2$.} \hfill (2 points)
+        \end{enumerate}
+    \vspace{5cm}
+    
+    \item{Consider the region $R$ bounded inside the cardoid $r=1+cos\theta$ and outside the circle $r=3cos\theta$. (\textbf{Hint:} Make advantage of the symmetry.)}
+    \vspace{-0.5em}
+        \begin{enumerate}[a.]
+            \item{Express the area of the region $R$ as a sum of integrals.} \hfill (1 point)
+            \item{Convert your answer in item a as a sum of double integrals.}\hfill (1 point)
+            \item{Set-up a double integral that gives the volume of the solid when $R$ is projected upwards the graph $x^2+y^2+z^2=3$.}\hfill (3 points)
+    \end{enumerate}
+    \vspace{5cm}
+    
+    \item{Convert the polar double integral $\int_{\frac{\pi}{6}}^{\frac{\pi}{3}} \int_{0}^{2\csc \theta} r^3\cos \theta drd\theta$ into its equivalent Cartesian double integral.} \hfill (5 points)
+    \vspace{10em}
+
+\newpage
+\thispagestyle{plain}
+\vspace*{-5em}
+    \item{Convert the Cartesian double integral 
+    \[\int_{0}^{2} \int_{0}^{\sqrt{4-x^2}} \sqrt{x^2+y^2} dydx\]
+    into polar coordinates.} \hfill (5 points)
+    \vspace{10em}
+    
+    \item{Let $S$ be the solid bounded by the graph in the first octant of $-z+2=x^2+y^2$.}
+    \vspace{-0.5em}
+        \begin{enumerate}[a.]
+            \item{Set-up a triple integral in the order $dzdxdy$ that gives its volume.} \hfill (3 points)
+            \item{Rewrite the order of integration in the order $dydxdz$.} \hfill (2 points)
+        \end{enumerate}
+        \vspace{6cm}
+    \item{Rewrite the triple integral:
+    \[\int_{0}^{1} \int_{0}^{1-x} \int_{0}^{1-x-y} f(x,y,z) dzdydx\]
+    into the integral with an order $dxdydy$.}\hfill (5 points)
+\end{enumerate}
+
+\vfill
+
+\begin{center}
+    \textit{end of mock exercise} \\
+    \textit{30 points}
+\end{center}
+
+\end{document}

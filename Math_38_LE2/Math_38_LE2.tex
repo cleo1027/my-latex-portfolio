@@ -1,0 +1,446 @@
+\documentclass{article}
+
+\setlength{\headheight}{15pt}
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage[margin=1in, headheight=7pt, headsep=12pt]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% Creates the header and footer. You can adjust the look and feel of these here.
+\pagestyle{fancy}
+\fancyhead[l]{\textbf{Multivariate Functions}}
+\fancyhead[c]{\textbf{MATH 38}}
+\fancyhead[r]{\textbf{1st Semester AY 2026-2027}}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.1pt} %Creates a horizontal line underneath the header
+\setlength{\headheight}{10pt} %Sets enough space for the header
+
+
+\begin{document} %The writing for your homework should all come after this. 
+
+\noindent \textbf{Part I:} Limit of a Multivariate Function 
+\vspace{-0.5em}
+\begin{enumerate}[start=1, label={\bfseries Theorem \arabic*:}, wide=0pt] %You can change "Problem" to be whatevber label you like. 
+    \item \textbf{(Limit over a set)}
+    \vspace{-0.2em}
+
+    Suppose the function $f$ is defined at all point in an open ball having its center at $(x_0,y_0)$, except possible at $(x_0,y_0)$ itself, and let
+    \[\lim_{(x,y)\xrightarrow{}(x_0,y_0)} f(x,y)=L\]
+
+    If S is any set in $\mathbb{R}^2$ which has $(x_0,y_0)$ as an accumulation point, then \[\lim_{\substack{(x,y) \to (x_0,y_0) \\ (x,y) \in S}} f(x,y) = L\] 
+
+\textbf{Example:} Show that $\lim\limits_{(x,y)\to(0,4)} (6x+y)=4$
+\begin{align*}
+    \text{Let } &S_1= \{(x,y){}\lvert y=x+4\} \\
+                    &{} \lim_{\substack{(x,y) \to (0,4) \\ (x,y) \in S_1}} (6x+y) =\lim_{x \xrightarrow{}0}(6x+(x+4))=\lim_{x\xrightarrow{}0}7x+4=4 \\[1.5ex]
+    \text{Let } &S_2 = \{(x,y) \lvert y=4e^{-x} \} \\
+                   & \lim_{\substack{(x,y) \to (0,4) \\ (x,y) \in S_2}} (6x+y) =\lim_{x \xrightarrow{}0}(6x+4e^{-x})=4
+\end{align*}
+
+    Since we've shown that 
+    \[\lim_{\substack{(x,y) \to (x_0,y_0) \\ (x,y) \in S_1}} f(x,y) = \lim_{\substack{(x,y) \to (x_0,y_0) \\ (x,y) \in S_2}} f(x,y)\] 
+    then $\lim\limits_{(x,y)\to(0,4)} (6x+y)=4$.
+
+    \item \textbf{(Non-existent of a limit)} 
+    
+    Let $S_1$, $S_2$ be curves in $\mathbb{R}^2$ which passes through the point $(x_0,y_0)$. If 
+    \[\lim\limits_{\substack{(x,y) \to (x_0,y_0) \\ (x,y) \in S_1}} f(x,y) \neq \lim\limits_{\substack{(x,y) \to (x_0,y_0) \\ (x,y) \in S_2}}f(x,y)\] (or at least one of the two limits does not exist), then 
+    \[\lim\limits_{(x,y)\to (x_0,y_0)} f(x,y)\] does not exist.
+
+\textbf{Example:} Show that $\lim\limits_{(x,y)\to(0,0)} \frac{x^2-y^2}{x^2+y^2}$ does not exist.
+\begin{align*}
+\text{Let } S_1\{(x,y)&{}\lvert x=0\} \\
+          &{} \lim_{\substack{(x,y) \to (0,0) \\ (x,y) \in S_2}} \left(\frac{x^2-y^2}{x^2+y^2}\right) =\lim_{y \rightarrow{0}} \left( \frac{-y^2}{y^2} \right) \lim_{y\rightarrow{0}}(-1)=-1
+\end{align*}
+\begin{align*}
+\text{Let }S_2\{(x,y)&{}\lvert y=0\} \\
+          &{} \lim_{\substack{(x,y) \to (0,0) \\ (x,y) \in S_2}} \left(\frac{x^2-y^2}{x^2+y^2}\right) =\lim_{x \rightarrow{0}} \left( \frac{x^2}{x^2} \right) \lim_{x\rightarrow{0}}(1)=1
+\end{align*}
+ 
+\vspace{-1em}
+
+Since we've shown that  we've shown that 
+    \[\lim_{\substack{(x,y) \to (x_0,y_0) \\ (x,y) \in S_1}} f(x,y) \neq \lim_{\substack{(x,y) \to (x_0,y_0) \\ (x,y) \in S_2}} f(x,y)\] 
+    then $\lim\limits_{(x,y)\to(0,4)} \frac{x^2-y^2}{x^2+y^2}$ does not exist.
+
+    \item \textbf{(Epsilon-Delta Definition of a Multivariate Function)} 
+    
+    Let f be a function of $n$ variables defined on a open ball $B((a,b),r)$, except possibly at the point $A$ itself. The limit of $f(P)$ as $P$ approaches $A$ is $L$, written as $\lim\limits_{P \to A} f(P)=L$. If for any $\varepsilon>0$, however small, there exists a $\delta>0$ such that if $0<\sqrt{(x-a)^2+(y-b)^2}<\delta$, then $\lvert f(x,y) - L\rvert<\varepsilon$.
+
+\vspace{1em}
+\textbf{Example:} Prove that $\lim\limits_{(x,y)\to(2,1)} (2x+3y)=7$
+
+\textbf{Proof.} 
+
+    Let $f(x,y)=2x^2-3y$. Since $D_f=\mathbb{R}^2$, then we can take any open ball centered at $(2,1)$ as the open ball required by the definition.
+
+    Given any $\varepsilon>0$ take $\delta=\frac{\varepsilon}{5}$.
+
+If $0<\sqrt{(x-2)^2+(y-1)^2}<\varepsilon$, then $0<\sqrt{(x-2)^2+(y-1)^2}<\frac{\varepsilon}{5}$ 
+
+$\implies$ $\lvert x-2 \rvert <\frac{\varepsilon}{5}$ and $\lvert y-1 \rvert <\frac{\varepsilon}{5}$.
+\begin{flalign*}
+  \text{Then, } \lvert f(x,y)-L \rvert &=\lvert 2x+3y-7 \rvert =\lvert (2x-4)+(3y-3) \rvert \\
+   &=\lvert 2(x-2)+3(y-1) \rvert \\
+   &\leq 2 \lvert (x-2) \rvert + 3 \lvert (y-1) \rvert \\
+   &<2 \left(\frac{\varepsilon}{5}\right) + 3 \left( \frac{\varepsilon}{5}\right)=\varepsilon. \blacksquare &
+\end{flalign*}
+
+\newpage  %This creates a newpage
+
+\end{enumerate}
+
+\noindent \textbf{Part II:} Partial Derivatives
+\vspace{-0.3em}
+\begin{enumerate}[start=1,label={\bfseries Theorem \arabic*:}, wide = 0pt]
+    \item \textbf{(Limit Definition of a Partial Derivative)}
+
+Let $f$ be a function of two variables $x$ and $y$. The partial derivative of $f$ with respect to $x$ is the function denoted by $D_1f$ such that its value at any point in the domain  of f is given by,
+
+\[\frac{\partial F}{\partial x}=\lim_{h \xrightarrow{}0} \frac{f(x+h,y)-f(x,y)}{h} \]
+
+if this limit exists.
+
+\vspace{0.5em}
+Let $f$ be a function of two variables $x$ and $y$. The partial derivative of $f$ with respect to $y$ is the function denoted by $D_2f$ such that its value at any point in the domain  of f is given by,
+\[\frac{\partial F}{\partial y}=\lim_{h \xrightarrow{}0} \frac{f(x,y+h)-f(x,y)}{h} \]
+
+if this limit exists.
+
+\textbf{Example:} Given $f(x,y)=x^2+xy+3y$, determine $f_x$ and $f_y$.
+
+\[f_x(x,y)= \lim_{h \xrightarrow{}0} \frac{f(x+h,y)-f(x,y)}{h}, \qquad f_y(x,y)=\lim_{h \xrightarrow{}0} \frac{f(x,y+h)-f(x,y)}{h}\]
+\begin{align*}
+f(x+h, y) &{}- f(x,y) \\
+          &{}= (x+h)^2 + (x+h)y + 3y - (x^2 + xy + 3y) \\
+          &{}= (x^2 + 2xh + h^2) + (xy + hy) + 3y - (x^2 + xy + 3y) \\
+          &{}= 2xh + h^2 + hy
+\end{align*}
+$f(x,y)=x^2+xy+3y$
+\begin{flalign*}
+    f_x(x,y) &=\lim_{h\xrightarrow{}0} \frac{f(x+h,y)-f(x,y)}{h} \\
+           &=\lim_{h\xrightarrow{}0} \frac{2xh+h^2+hy}{h} \\
+           &=\lim_{h\xrightarrow{}0} (2x+h+y) \\
+           &=2x+y
+\end{flalign*}
+$f(x,y)=x^2+xy+3y$
+\begin{align*}
+f(x, y+h) &{}- f(x,y) \\
+          &{}= x^2 + x(y+h) + 3(y+h) - (x^2 + xy + 3y) \\
+          &{}= x^2 + (xy + xh) + (3y+3h) - (x^2 + xy + 3y) \\
+          &{}= xh+3h
+\end{align*}
+\vspace{-1em}
+
+$f(x,y)=x^2+xy+3y$
+\begin{flalign*}
+    f_y(x,y) &=\lim_{h\rightarrow{}0} \frac{f(x,y+h)-f(x,y)}{h} \\
+           &=\lim_{h\rightarrow{}0} \frac{xh+3h}{h} \\
+           &=\lim_{h\rightarrow{}0} (x+3) \\
+           &=x+3
+\end{flalign*}
+\vspace{-2em}
+\item \textbf{(General Technique for Solving Partial Derivatives)}
+
+\text{Given: } $w=f(x_1,x_2,\dots, x_n)$
+
+\textbf{Notations: } $ f_{xk} \qquad \frac{\partial w}{\partial x_k} \qquad \frac{\partial f}{\partial x_k} \qquad f_k$
+
+\textbf{Example }
+
+\text{1. }$z=3x^3y^3 +2xy-3x^4+2y+10$
+\begin{flalign*}
+   \frac{\partial z}{\partial x} &= 9x^2y^3+2y-12x^3 \\
+   \frac{\partial z}{\partial y} &= 9x^3y^2+2x+2
+\end{flalign*}
+
+\text{2. } $f(x,y)= \sin{(xy)} +y \ln x -2e^{x+yx}$
+\begin{flalign*}
+    f_x(x,y) &=y\cos(xy) +\frac{y}{x} - (1+y)2e^{x+yx} \\
+    f_y(x,y) &= x\cos(xy)+\ln x - 2xe^{x+yx}
+\end{flalign*}
+
+\textbf{Example: }
+
+If $f(x,y) =4-x^2-2y^2$, find the slope of the tangent line to the curve of intersection of the graph of $f$ with the plane $y=1$ through the point $(1,1,1)$.
+
+\textbf{Solution: }
+
+The slope of the tangent line is given by $f_x(1,1)$.
+\[f_x(x,y)=-2x \Rightarrow f_x(1,1) =-2 \]
+\textbf{Remarks:} 
+
+Given $z=f(x,y)$
+
+\text{Partial derivative with respect to x: } 
+\begin{align*}
+    D_1 f(a,b)= \lim_{x\xrightarrow{}a} \frac{f(x,b)-f(a,b)}{x-a} \\
+\end{align*}
+
+\text{Partial derivative with respect to y: } 
+\begin{align*}
+    D_1 f(a,b)= \lim_{y\xrightarrow{}b} \frac{f(a,y)-f(a,b)}{y-a} \\
+\end{align*}
+
+\item \textbf{(Implicit Differentiation)}
+
+Let $f$ be an differentiable function of the single variable $x$ such that $y=f(x)$ and $f$ is defined implicitly by the equation
+\[F(x,y)=0.\]
+Then, if $F$ is differentiable and $F_x(x,y) \neq 0,$ then 
+\[\frac{dy}{dx}=-\frac{F_x(x,y)}{F_y(x,y)}\]
+
+Similarly, let $f$ be a differentiable function of $x$ and $y$ such that $z=f(x,y)$ and $f$ defined implicitly by the equation
+\[F(x,y,z)=0\]
+Then, if $F$ is differentiable and $F_z(x,y,z) \neq 0,$ then 
+\[\frac{\partial z}{\partial x}= -\frac{F_x(x,y,z)}{F_z(x,y,z)}\]
+and
+\[\frac{\partial z}{\partial y}= -\frac{F_y(x,y,z)}{F_z(x,y,z)}\]
+\textbf{Example: } $e^{x+y} - \ln{\left( y^2z \right)}=\tan (xz)$
+\begin{align*}
+    F(x,y,z) &= e^{x+y} - \ln{\left( y^2z \right)} - \tan (xz) = 0 \\
+    \frac{\partial z}{\partial x} &= -\frac{F_x(x,y,z)}{F_z(x,y,z)} =\frac{e^{x+y}-z\sec^2{(xz)}}{-\frac{1}{z}-x\sec^2{(xz)}} \\
+    \frac{\partial z}{\partial y} &= -\frac{F_y(x,y,z)}{F_z(x,y,z)} = -\frac{e^{x+y}-\frac{2}{y}}{-\frac{1}{z}-x\sec^2(xz)}
+\end{align*}
+\textbf{Example: } $\operatorname{Arctan (x+z)} - \log_2(xy) = 3^{2y + z}$
+\begin{align*}
+    F(x,y) &= \operatorname{Arctan (x+z)} - \log_2(xy) - 3^{2y + z} = 0 \\
+    \frac{\partial z}{\partial x} &= -\frac{F_x(x,y,z)}{F_z(x,y,z)}= -\frac{\frac{1}{1+(x+z)^2}-\frac{y}{xy \ln 2}}{\frac{1}{1 + (x + z)^2}-3^{2y+z}\ln3} \\
+    \frac{\partial z}{\partial y} &= -\frac{F_y(x,y,z)}{F_z(x,y,z)} = -\frac{-\frac{x}{xy \ln 2}-3^{2y+z}(\ln 3) (2)}{\frac{1}{1+(x+z)^2}-3^{2y+z} \ln 3}
+\end{align*}
+\item \textbf{(Chain Rule)}
+
+Given $u$, a differentiable function of $x$ and $y$ where $x=F(r,s)$ and $y=G(r,s)$, then 
+\[\frac{\partial u}{\partial r} = \frac{\partial u}{\partial x} \frac{\partial x}{\partial r} + \frac{\partial u}{\partial y} \frac{\partial y}{\partial r}\]
+\[\frac{\partial u}{\partial s} = \frac{\partial u}{\partial x} \frac{\partial x}{\partial s} + \frac{\partial u}{\partial y} \frac{\partial y}{\partial s}\]
+
+\begin{tabular}{ll}
+    \textbf{Example:} & Given $w = F(x, y, z)$ \\
+    & where $x = f(r, s, t) \quad y = g(r, t) \quad z = h(r, s)$
+\end{tabular}
+\begin{align*}
+    \frac{\partial w}{\partial r} &= \frac{\partial w}{\partial x} \frac{\partial x}{\partial r} + \frac{\partial w}{\partial y} \frac{\partial y}{\partial r} + \frac{\partial w}{\partial z} \frac{\partial z}{\partial r} \\
+    \frac{\partial w}{\partial s} &= \frac{\partial w}{\partial x} \frac{\partial x}{\partial s} + \frac{\partial w}{\partial z} \frac{\partial z}{\partial s} \\
+    \frac{\partial w}{\partial t} &= \frac{\partial w}{\partial x} \frac{\partial x}{\partial t} + \frac{\partial w}{\partial y} \frac{\partial y}{\partial t}
+\end{align*}
+\begin{tabular}{ll}
+    \textbf{Example:} & Let $u = 3xz^2-4zy^2$ where $x=5rs + 5r$, $y=3r^2 - 2s$, \\
+    & and $z = r^2s - s^2$. Solve for $\frac{\partial u}{\partial r}$ and $\frac{\partial u}{\partial s}$.
+\end{tabular}
+
+\begin{align*}
+    \frac{\partial r}{\partial r} &= \frac{\partial u}{\partial r} \frac{\partial x}{\partial r} + \frac{\partial u}{\partial y} \frac{\partial y}{\partial r} + \frac{\partial u}{\partial z} \frac{\partial z}{\partial r} \\
+    &= 3z^2 \cdot (5s+5) - 8zy \cdot 6r + (6xz - 4y^2) \cdot 2rs \\[1.5ex]
+    \frac{\partial u}{\partial s} &= \frac{\partial u}{\partial x} \frac{\partial x}{\partial s} + \frac{\partial u}{\partial y} \frac{\partial y}{\partial s} + \frac{\partial u}{\partial z} \frac{\partial z}{\partial s} \\
+    &= 3z^2 \cdot 5r - 8zy \cdot (-2) + (6xz -4y^2) \cdot (r^2 - s)
+\end{align*}
+\end{enumerate}
+
+\newpage
+\noindent \textbf{Part III:} Continuity of Functions
+\vspace{-0.2em}
+\begin{enumerate}[start=1,label={\bfseries Theorem \arabic*:}, wide=0pt]
+    \item \textbf{(Continuity of a Multivariate Function)} 
+
+    Suppose that $f$ is a function of $n$ variables and $A$ is the point in $\mathbb{R}^n$. Then $f$ is said to be continuous at the point $A$ if and only if the following three conditions are satisfied.
+\begin{enumerate} [i.]
+    \item $f(a)$ exists
+    \item $\lim \limits_{P \rightarrow A} f(P)$ exists
+    \item $\lim \limits_{P \rightarrow A} f(P) =f(a)$
+\end{enumerate}
+
+\textbf{Example:} Show that the function defined by $f(x,y) =x^2+y$ is continuous at $(0,1)$.
+\begin{enumerate} [i.]
+    \item $f(0,1)=(0)^2+(1)=1$
+    \item $\lim \limits_{(x,y) \rightarrow (0,1)} f(x,y)=\lim \limits_{(x,y) \rightarrow (0,1)} x^2+y=1$
+    \item $\lim \limits_{(x,y) \rightarrow (0,1)} f(x,y)=f(0,1)$
+\end{enumerate}
+
+Thus, $f$ is continuous at $(0,1)$.
+
+\textbf{Types of Discontinuity}
+
+If a function $f$ is discontinuous at a point $A$, the discontinuity is said to be
+\begin{enumerate} [i.]
+    \item removable if $\lim \limits_{P \rightarrow A} f(P) exists$, or
+    \item essential if $\lim \limits_{P \rightarrow A} f(P)$ does not exists.
+\end{enumerate}
+
+\textbf{Example}
+
+Determine whether
+\[f(x)=
+\begin{cases}
+    \frac{x^2-y^2}{x^2+y^2}, &\text{if} (x,y) \neq (0,0) \\
+    0, &\text{if} (x,y) =(0,0)
+\end{cases}
+\]
+
+\textbf{Solution}
+
+Consider the two sets $S_1=\{ (x,y) \rvert x=0 \}$ and $S_2=\{ (x,y) \rvert y=0 \}$. It follows that 
+\begin{align*}
+S_1\{(x,y)&{}\lvert x=0\} \\
+          &{} \lim_{\substack{(x,y) \to (0,0) \\ (x,y) \in S_1}} \left(\frac{x^2-y^2}{x^2+y^2}\right) =\lim_{x \rightarrow{0}} \left( \frac{x^2}{x^2} \right) \lim_{x\rightarrow{}0}(1)=1 \\[1.5ex]
+S_2 \{(x,y) &{} \lvert y=0\} \\
+&{} \lim_{\substack{(x,y) \to (0,0) \\ (x,y) \in S_1}} \left(\frac{x^2-y^2}{x^2+y^2}\right) =\lim_{x \rightarrow{0}} \left( \frac{-y^2}{y^2} \right) \lim_{x\rightarrow{0}}(-1) = -1 
+\end{align*}
+Since we've shown that $\lim\limits_{\substack{(x,y) \to (0,0) \\ (x,y) \in S_1}} \left(\frac{x^2-y^2}{x^2+y^2}\right) \neq \lim_{\substack{(x,y) \to (0,0) \\ (x,y) \in S_2}} \left(\frac{x^2-y^2}{x^2+y^2}\right)$, then the limit does not exist.
+
+
+\end{enumerate}
+
+\newpage
+
+\noindent \textbf{Part IV: } Differentiability 
+\begin{enumerate}[start=1,label={\bfseries Theorem \arabic*:}, wide = 0pt]
+\vspace{-0.5em}
+\item{\textbf{(Definition of Differentiability)}}
+
+If $f$ is a function of two variables $x$ and $y$, and the increment of $f$ at the point $(x_0,y_0)$ can be written as 
+\[\Delta f(x_0,y_0) =D_1f(x_0,y_0)\Delta +D_2f(x_0,y_0)\Delta y +\varepsilon_1 \Delta x+\varepsilon \Delta y\]
+where $\varepsilon_1$ and $\varepsilon_2$ are functions  of $\Delta x$ and $\Delta y$ such that 
+\[\varepsilon_1 \rightarrow{0} \text{ and } \varepsilon_2 \rightarrow{0} \text{ as } (\Delta x, \Delta y) \rightarrow{(0,0)}\]
+then $f$ is said to be differentiable at the point $(x_0,y_0)$.
+
+\textbf{Example: } Show that the function defined by $f(x,y)=x^2y$ is differentiable over its domain.
+
+Since $f$ is a polynomial, then it is defined over its domain $\mathbb{R}^2$. Let $(x_0,y_0)$ be an arbitrary point in $\mathbb{R}^2$. It follows that
+\begin{align*}
+    \Delta f(x_0, y_0) &= f(x_0 + \Delta x, y_0 + \Delta y) - f(x_0, y_0) \\
+    &= (x_0 + \Delta x)^2 (y_0 + \Delta y) - x_0^2 y_0 \\
+    &= (x_0^2 + 2x_0 \Delta x + (\Delta x)^2)(y_0 + \Delta y) - x_0^2 y_0 \\
+    &= x_0^2 y_0 + x_0^2 \Delta y + 2x_0 y_0 \Delta x + 2x_0 \Delta x \Delta y \\
+    &\quad + y_0 (\Delta x)^2 + (\Delta x)^2 \Delta y - x_0^2 y_0 \\
+    &= x_0^2 \Delta y + 2x_0 y_0 \Delta x + 2x_0 \Delta x \Delta y + y_0 (\Delta x)^2 + (\Delta x)^2 \Delta y \\
+   \Delta f(x_0,y_0) &= 2x_0y_0\Delta x + x_0^2 \Delta y + 2x_0 + 2x_0\Delta x \Delta y + (\Delta x)^2 \Delta y \\[1.5ex]
+    D_1 f(x_0, y_0) \Delta x &= 2x_0 y_0 \Delta x \\
+    D_2 f(x_0, y_0) \Delta y &= x_0^2 \Delta y \\
+    \varepsilon_1 \Delta x &= 2x_0 \Delta x \Delta y + y_0 (\Delta x)^2 \\
+    \varepsilon_1 \Delta y &= (\Delta x)^2 \Delta y
+\end{align*}
+
+Since $\lim \limits_{(\Delta x, \Delta y) \rightarrow{(0,0)}} \varepsilon_1 = \lim \limits_{(\Delta x, \Delta y) \rightarrow{(0,0)}} \varepsilon_2=0$, then $f$ is differentiable in $\mathbb{R}^2$.
+
+\item \textbf{(Total Differential)}
+
+If $f$ is a function of two variables $x$ and $y$, and $f$ is differentiable at $(x,y)$, the total differential of $f$ is the function $df$ such that 
+\[df (x,y, \Delta x, \Delta y) = D_1 f(x,y) \Delta x + D_2f(x,y) \Delta y\]
+\textbf{Remarks: } If $z = f(x,y)$, then
+\begin{enumerate} [1.]
+    \item $dz=D_1f(x,y) \Delta x+ D_2f(x,y) \Delta y$
+    \item $dz = D_1f(x,y) dx + D_2f(x,y) dy$
+    \item $dz = \frac{\partial z}{\partial x} dx + \frac{\partial z}{\partial y} dy$
+\end{enumerate}
+\begin{tabular} {ll}
+    \textbf{Example:} &\text{If } $f(x,y) = 2x^2 + 5xy$ \\
+    & \textit{(i) } $df(2,-1,\Delta x, \Delta y)$ \qquad \text{and} \qquad \textit{(ii) } $df(2,-1,-0.01, 0.02)$ 
+\end{tabular}
+\begin{align*}
+    &df (x,y, \Delta x, \Delta y)= D_1f(x,y) \Delta x + D_2f(x,y) \Delta y \\
+    &df (x,y, \Delta x, \Delta y)= (4x+5y) \Delta x + (5x-8y) \Delta y \\
+    &df (2,-1, \Delta x, \Delta y)= (8-5) \Delta x + (10+8) \Delta y = 3 \Delta x + 18 \Delta y \\
+    &df (2,-1,-0.01,0.02) = 3(-0.01) + 18 (0.02) = 0.33
+\end{align*}
+
+\textbf{Generalization } 
+
+If $f$ is a function of $n$ variables $x_1, x_2,\dots, x_n$ and $f$ is differentiable at a point $P$, the total differential $f$ is given by
+\[df(P, \Delta x_1, \Delta x_2, \dots \Delta x_n) = D_1f(P) \Delta x_1 + D_2 f(P) \Delta x_2 + \dots +D_n f(p) \Delta x_n\]
+\begin{tabular} {ll}
+    \textbf{Remarks:} \text{If} &$w = f(x_1,x_2,\dots, x_n)$, \text{then} \\[1.5ex]
+    & $dw = \frac{\partial w}{\partial x_1} dx_1 + \frac{\partial w}{\partial x_2} dx_2 + \dots + \frac{\partial w}{\partial x_n} dx_n$ 
+\end{tabular}
+
+\textbf{Example:} Use differentials to approximate $\sqrt{(3.01)^2+(3.98)^2}$.
+
+Let $f(x,y) = \sqrt{x^2 + y^2}$ such that $x = 3$, $y = 4$, $\Delta x = 0.01$, $\Delta y = -0.02$.
+
+It follows that
+\begin{align*}
+    f(3,4) = \sqrt{3^2+4^2} &= \sqrt{25} = 5 \\[5pt]
+    D_x f(x,y) &= \frac{x}{\sqrt{x^2+y^2}} & D_y f(x,y) &= \frac{y}{\sqrt{x^2+y^2}} \\
+    D_x f(3,4) &= \frac{3}{\sqrt{3^2+4^2}} & D_y f(3,4) &= \frac{4}{\sqrt{3^2+4^2}} \\
+    D_x f(3,4) &= \frac{3}{5} & D_y f(3,4) &= \frac{4}{5}
+\end{align*}
+
+Then
+\[df = D_1f(x,y) \Delta x + D_2f(x,y) \Delta y\]
+\[df = \left(\frac{3}{5}\right) \left( \frac{1}{10}\right) + \left( \frac{4}{5} \right) \left( -\frac{1}{5} \right) = -\frac{1}{10}=-0.01\] 
+
+Using the linear approximation formula $f(x,y) \approx f(x,y) + df$
+\[5+(-0.01)=4.99\]
+
+Hence, using differentials, $\sqrt{(3.01)^2+(3.98)^2} \approx 4.99$.
+
+\textbf{Example: } The dimensions of a rectangular box are measured to be
+$75$ cm, $60$ cm, and $40$ cm, and each measurement is
+correct to within $0.2$ cm. Use differentials to estimate
+the largest possible error when the volume
+
+Let $V$ cubic centimeter be the volume of the rectangular box, and $x$, $y$, and $z$ the measurements of the sides of the box. Then
+\[V=xyz\]
+
+It was given that $\lvert \Delta x \rvert \leq 0.2$, $\lvert \Delta y \rvert \leq 0.2$, and $\lvert \Delta z \rvert \leq 0.2$.
+
+To find the largest error, we use $dx=dy=dz=0.2$ together with $x=75$, $y=60$, $40$.
+\begin{align*}
+    \Delta V \approx dV &= \frac{\partial V}{\partial x} dx + \frac{\partial V}{\partial y} dy + \frac{\partial V}{\partial z} dz \\
+    &= (60 \text{ cm})(40 \text{ cm})(0.2 \text{ cm})+(75 \text{ cm})(40 \text{ cm})(0.2 \text{ cm}) \\
+    & \qquad +(75 \text{ cm})(60 \text{ cm})(0.2 \text{ cm}) \\
+    &= 480 \text{ cm}^3 + 600 \text{ cm}^3 + 900 \text{ cm}^3 \\
+    &= 1980 \text{ cm}^3
+\end{align*}
+Hence, the maximum error in measuring the dimensions of the box is $0.2 \text{ cm}$, the maximum error in the calculated volume of the box is $1980 \text{ cm}^3$.
+\end{enumerate}
+
+\newpage
+
+\noindent \textbf{Part IV: } True or False Trivia
+\begin{enumerate}[label={\bfseries Theorem}, wide = 0pt]
+\vspace{-0.5em}
+\item \textbf{(Continuity and Differentiability of Functions)}
+\begin{enumerate}
+    \item Continuity at a point requires that as you approach $(x_0,y_0)$ along any path, $f(x,y) \to f(x_0,y_0)$. However, partial derivatives require a smooth slope (no sharp corners/cusps) strictly along the coordinate axes.
+\begin{align*}
+    &f_x(x_0,y_0) = \frac{x}{\sqrt{x^2+y^2}} \implies f_x(0,0) = \frac{0}{\sqrt{0^2+0^2}} \text{ (undefined)} \\
+    &f_y(x_0,y_0) = \frac{x}{\sqrt{x^2+y^2}} \implies f_y(0,0) = \frac{0}{\sqrt{0^2+0^2}} \text{ (undefined)}
+\end{align*}
+    \item Differentiability at a point $(x_0,y_0)$ guarantees that $f_x(x_0,y_0)$ and $f_y(x_0,y_0)$ exist, but it does not guarantee that those partial derivative functions are continuous around that point.
+    \item Partial derivatives $f_x$ and $f_y$ only measure rate of change along two straight lines (horizontal and vertical). They tell you nothing about diagonal lines, parabolic paths, or circular paths approaching $(x_0,y_0)$. Counterexample: Consider $$f(x,y) = \begin{cases} 1 & \text{if } xy = 0 \\ 0 & \text{if } xy \neq 0 \end{cases}$$Along the $x$-axis ($y=0$) and $y$-axis ($x=0$), the function is constantly $1$. Therefore, $f_x(0,0) = 0$ and $f_y(0,0) = 0$. However, along any diagonal path like $y = x$ ($x \neq 0$), $f(x,x) = 0$. Because $\lim\limits_{x \to 0} f(x,x) = 0 \neq f(0,0)$, $f$ is discontinuous at $(0,0)$.
+    \item By definition, $f(x,y)$ is differentiable at $(x_0,y_0)$ if the error term $\epsilon(\Delta x, \Delta y)$ in the local linear approximation vanishes faster than the distance to the point:$$\Delta f = f_x(x_0,y_0)\Delta x + f_y(x_0,y_0)\Delta y + \epsilon_1 \Delta x + \epsilon_2 \Delta y$$where $\epsilon_1, \epsilon_2 \to 0$ as $(\Delta x, \Delta y) \to (0,0)$. Taking the limit of $\Delta f = f(x_0+\Delta x, y_0+\Delta y) - f(x_0,y_0)$ as $(\Delta x, \Delta y) \to (0,0)$ forces $\Delta f \to 0$, which proves $\lim\limits_{(x,y) \to (x_0,y_0)} f(x,y) = f(x_0,y_0)$.
+    \item Sufficient Condition for Differentiability states that while the simple existence of $f_x$ and $f_y$ at a single point is not enough for differentiability, if $f_x$ and $f_y$ exist in a neighborhood and are continuous at $(x_0,y_0)$, the Mean Value Theorem applied to $x$ and $y$ guarantees that $f$ can be linearly approximated with an error that vanishes faster than $\sqrt{(\Delta x)^2 + (\Delta y)^2}$. Hence, continuity of partial derivatives strictly guarantees differentiability.
+    \item Clairaut's Theorem states that if $f_{xy}$ and $f_{yx}$ are continuous on an open disk 
+\[
+B((a,b);r) \subseteq \mathbb{D}_f,
+\] 
+then $f_{xy} = f_{yx}$.
+\end{enumerate}
+
+
+
+
+Some true or false questions related to the theorem
+\begin{enumerate} [1.]
+    \item If $f(x,y)$ is continuous at $(x_0,y_0)$, then its partial derivatives $f_x(x_0,y_0)$ and $f_y(x_0,y_0)$ must exist at that point.
+    \item If $f_x(x_0,y_0)$ and $f_y(x_0,y_0)$ both exist, then $f(x,y)$ is guaranteed to be continuous at $(x_0,y_0)$.
+    \item If $f(x,y)$ is differentiable at $(x_0,y_0)$, then $f(x,y)$ must be continuous at $(x_0,y_0)$.
+    \item If $f_x$ and $f_y$ exist in an open neighborhood around $(x_0,y_0)$ and are continuous at $(x_0,y_0)$, then $f(x,y)$ is differentiable at $(x_0,y_0)$.
+    \item If $f(x,y)$ is differentiable at $(x_0,y_0)$, then its partial derivatives $f_x$ and $f_y$ must be continuous at $(x_0,y_0)$.
+    \item If $f(x,y)$ and $g(x,y)$ are differentiable at $(x_0,y_0)$, then $h(t) = f(x(t), y(t))$ is differentiable at $t_0$ whenever $x(t)$ and $y(t)$ are differentiable at $t_0$ with $(x(t_0), y(t_0)) = (x_0, y_0)$.
+    \item If $f(x,y)$ is differentiable at $(x_0,y_0)$, then a non-vertical tangent plane to the surface $z = f(x,y)$ at $(x_0,y_0,f(x_0,y_0))$ exists.
+    \item If $\lim \limits_{(x,y) \to (0,0)} f(x,y) = 0$ along the line $y = 0$ and along the line $x = 0$, then $f(x,y)$ is continuous at $(0,0)$ provided $f(0,0) = 0$.
+    \item Let $f$ be a function of the two variables $x$ and $y$. If $f_x$ and $f_y$ are continuous on an open disk $B((a,b);r) \subseteq \mathbb{D}_f$,then $f_{xy}(a,b) = f_{yx}(a,b)$. 
+\end{enumerate}
+
+
+
+
+\end{enumerate}
+
+
+\end{document}
