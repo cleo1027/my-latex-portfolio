@@ -7,3 +7,4 @@ Note: First file in every document is the pdf
 - [Multiple Integrals](./MULTIPLE_INTEGRALS/)
 - [Math 38 LE2](./Math_38_LE2/)
 - [Telescoping Series](./Telescoping_Series/)
+- [MATH_101_PREFI_MOCK_EXAM](./MATH_101_PREFI_MOCK_EXAM/)
